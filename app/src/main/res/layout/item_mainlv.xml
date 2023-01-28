@@ -17,14 +17,14 @@
         android:layout_marginLeft="10dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/item_mainlv_iv_title"
+            android:id="@+id/item_mainlv_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="公交"
             android:textStyle="bold"
             android:textSize="16sp"/>
         <TextView
-            android:id="@+id/item_mainlv_iv_remark"
+            android:id="@+id/item_mainlv_tv_remark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="地铁一次"
@@ -38,13 +38,13 @@
         android:gravity="right"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/item_mainlv_iv_money"
+            android:id="@+id/item_mainlv_tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="￥ 6.0"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/item_mainlv_iv_time"
+            android:id="@+id/item_mainlv_tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="今天 17:30" />

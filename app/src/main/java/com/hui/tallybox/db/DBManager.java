@@ -61,4 +61,27 @@ public class DBManager {
         values.put("kind",bean.getKind());
         db.insert("accounttb",null,values);
     }
+    /*
+    获取某一天的支出或收入情况
+     */
+    @SuppressLint("Range")
+    public static List<AccountBean>getDayAccountFromAccounttb(int year, int month, int day){
+        List<AccountBean>list=new ArrayList<>();
+        String sql="select * from accounttb where year=? and month=? and day=? order by id desc";
+        Cursor cursor=db.rawQuery(sql,new String[]{year+" ",month+" ",day+" "});
+        /*遍历符合要求的每一行数据*/
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            int sImageid = cursor.getInt(cursor.getColumnIndex("sImageid"));
+            int kind = cursor.getInt(cursor.getColumnIndex("kind"));
+            String typename = cursor.getString(cursor.getColumnIndex("typename"));
+            String time = cursor.getString(cursor.getColumnIndex("time"));
+            String remark = cursor.getString(cursor.getColumnIndex("remark"));
+            float money = cursor.getFloat(cursor.getColumnIndex("money"));
+            AccountBean accountBean=new AccountBean(id,sImageid,typename,remark,time,money,year,month,day,kind);
+            list.add(accountBean);
+
+        }
+        return list;
+    }
 }
