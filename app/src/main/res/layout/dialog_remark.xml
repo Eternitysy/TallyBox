@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/dialog_remark_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="添加备注"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+    <EditText
+        android:id="@+id/dialog_remark_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_remark_tv"
+        android:hint="输入备注内容"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/white">
+        <requestFocus/>
+    </EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/dialog_remark_et"
+        android:padding="10dp">
+        <Button
+            android:id="@+id/dialog_remark_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消"
+            android:textColor="@color/blue_1A5599"
+            android:textStyle="bold"
+            android:background="@drawable/dialog_btn_bg"
+            android:layout_marginRight="5dp"/>
+        <Button
+            android:id="@+id/dialog_remark_btn_ensure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/main_recordbtn_bt"
+            android:layout_marginRight="5dp"/>
+    </LinearLayout>
+        
+
+</RelativeLayout>
