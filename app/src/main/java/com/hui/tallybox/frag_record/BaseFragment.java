@@ -63,7 +63,7 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
 
     private void setinitime() {
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm"); //HH大写时为24小时制
         String time=sdf.format(date);
         timeTv.setText(time);
         accountBean.setTime(time);
