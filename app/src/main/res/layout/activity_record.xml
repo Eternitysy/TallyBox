@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/grey_f3f3f3">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue_1A5599">
+
+        <ImageView
+            android:id="@+id/record_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:onClick="onClick"
+            android:src="@mipmap/back" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/record_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            app:tabGravity="center"
+            app:tabMode="fixed"
+            app:tabBackground="@color/blue_1A5599"
+            app:tabTextColor="@color/white"
+            app:tabSelectedTextColor="@color/geen_01847F"
+            app:tabIndicatorColor="@color/yellow_FBD26A"/>
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/recors_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name" />
+
+</LinearLayout>

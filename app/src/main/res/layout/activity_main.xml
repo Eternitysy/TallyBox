@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_f3f3f3">
+
+
+    <RelativeLayout
+        android:id="@+id/mian_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue_1A5599">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="记账本"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/mian_iv_serach"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:src="@mipmap/search"
+            android:onClick="onClick"/>
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/main_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mian_top_layout"
+        android:padding="10dp"
+        android:divider="@null"
+        android:dividerHeight="6dp"
+        android:scrollbars="none"
+        android:background="@color/grey_f3f3f3"/>
+
+    <ImageButton
+        android:id="@+id/main_bt_more"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/main_morebtn_bt"
+        android:src="@mipmap/more0"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:onClick="onClick"/>
+    <Button
+        android:id="@+id/main_btn_edit"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/main_bt_more"
+        android:layout_toLeftOf="@+id/main_bt_more"
+        android:text=" 记一笔"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:drawableLeft="@mipmap/pen"
+        android:gravity="center_vertical"
+        android:background="@drawable/main_recordbtn_bt"
+        android:onClick="onClick"/>
+
+
+
+
+
+</RelativeLayout>
