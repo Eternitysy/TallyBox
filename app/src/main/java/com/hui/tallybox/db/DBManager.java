@@ -83,6 +83,32 @@ public class DBManager {
 
         }
         return list;
+
+    }
+    /*
+    获取某月的支出或收入情况
+     */
+    @SuppressLint("Range")
+    public static List<AccountBean>getMonthAccountFromAccounttb(int year, int month){
+        List<AccountBean>list=new ArrayList<>();
+        String sql="select * from accounttb where year=? and month=? order by id desc";
+        Cursor cursor=db.rawQuery(sql,new String[]{year+" ",month+" "});
+        /*遍历符合要求的每一行数据*/
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            int sImageid = cursor.getInt(cursor.getColumnIndex("sImageid"));
+            int kind = cursor.getInt(cursor.getColumnIndex("kind"));
+            String typename = cursor.getString(cursor.getColumnIndex("typename"));
+            String time = cursor.getString(cursor.getColumnIndex("time"));
+            String remark = cursor.getString(cursor.getColumnIndex("remark"));
+            float money = cursor.getFloat(cursor.getColumnIndex("money"));
+            int day=cursor.getInt(cursor.getColumnIndex("day"));
+            AccountBean accountBean=new AccountBean(id,sImageid,typename,remark,time,money,year,month,day,kind);
+            list.add(accountBean);
+
+        }
+        return list;
+
     }
     /*
      获取每天的收入支出总金额
@@ -125,5 +151,18 @@ public class DBManager {
             total=money;
         }
         return total;
+    }
+    /*
+     查询记账表中记录了的年份
+     */
+    public static List<Integer> getYearFromAccounttb() {
+        List<Integer>list=new ArrayList<>();
+        String sql="select distinct(year) from accounttb order by year asc";
+        Cursor cursor=db.rawQuery(sql,null);
+        while(cursor.moveToNext()){
+            @SuppressLint("Range") int year=cursor.getInt(cursor.getColumnIndex("year"));
+            list.add(year);
+        }
+        return list;
     }
 }

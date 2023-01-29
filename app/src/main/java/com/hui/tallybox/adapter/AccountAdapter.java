@@ -70,6 +70,8 @@ public class AccountAdapter extends BaseAdapter {
 
 
     }
+
+
     class ViewHolder{
         ImageView typeIv;
         TextView tyTv,remarkTv,moneyTv,timeTv;

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         todayLV = findViewById(R.id.main_lv);
         editBtn = findViewById(R.id.main_btn_edit);
         moreBtn = findViewById(R.id.main_bt_more);
-        searchIv = findViewById(R.id.mian_iv_serach);
+        searchIv = findViewById(R.id.mian_iv_box);
         editBtn.setOnClickListener(this);
         moreBtn.setOnClickListener(this);
         searchIv.setOnClickListener(this);
@@ -118,12 +118,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.mian_iv_serach:
-
+            case R.id.mian_iv_box:
+                Intent it1=new Intent(this,HistoryActivity.class);
+                startActivity(it1);
                 break;
             case R.id.main_btn_edit:
-                Intent it=new Intent(this,RecordActivity.class);
-                startActivity(it);
+                Intent it2=new Intent(this,RecordActivity.class);
+                startActivity(it2);
                 break;
             case R.id.main_bt_more:
 
