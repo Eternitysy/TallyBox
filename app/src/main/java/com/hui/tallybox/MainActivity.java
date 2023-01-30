@@ -1,17 +1,21 @@
 package com.hui.tallybox;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hui.tallybox.adapter.AccountAdapter;
 import com.hui.tallybox.db.AccountBean;
@@ -20,6 +24,7 @@ import com.hui.tallybox.utils.BudgeDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -77,6 +82,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editBtn.setOnClickListener(this);
         moreBtn.setOnClickListener(this);
         searchIv.setOnClickListener(this);
+        setLVLongClickListener();
+    }
+    /*设置ListView的长按事件*/
+    private void setLVLongClickListener() {
+        todayLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                int pos=position-1;
+                AccountBean clickBean= mData.get(pos); //获取当前被点击的数据
+                //弹出是否删除删除的对话框
+                showDeleteDialog(clickBean);
+                return false;
+            }
+
+
+        });
+    }
+    private void showDeleteDialog(AccountBean clickBean) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage("删除后无法恢复,是否删除?").setNegativeButton("取消",null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int click_id=clickBean.getId();  //获取id
+                DBManager.deleteFromAccounttbByid(click_id); //从数据库中删除数据
+                mData.remove(clickBean); //从ListView中移除数据
+                Toast.makeText(MainActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged(); //提示适配器更新数据
+                setTopTvShow(); //更新头部数据
+            }
+        });
+        builder.create().show();
     }
 
     private void initTime() {
@@ -127,7 +163,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(it2);
                 break;
             case R.id.main_bt_more:
-
+                Intent it3=new Intent(this,SettingActivity.class);
+                startActivity(it3);
                 break;
             case R.id.item_mainlv_iv_top_budget:
                 showBudgeDialog();
@@ -139,13 +176,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+
     /*显示预算设置对话框*/
     private void showBudgeDialog() {
         BudgeDialog dialog=new BudgeDialog(this);
         dialog.show();
         dialog.setDialogSize();
         dialog.setOnEnsureListener(new BudgeDialog.OnEnsureListener() {
-
             @Override
             public void onEnsure(float money) {
                 //将预算数据写入共享数据中进行存储

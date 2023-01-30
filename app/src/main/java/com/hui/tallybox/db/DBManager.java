@@ -165,4 +165,18 @@ public class DBManager {
         }
         return list;
     }
+    /*
+      通过id从accounttb中删除数据
+     */
+    public static int deleteFromAccounttbByid(int id) {
+        int i=db.delete("accounttb","id=?",new String[]{id+""});
+        return i;
+    }
+    /*
+     删除accounttb中所有数据
+     */
+    public static void clearAllAccounttb(){
+        String sq="delete from accounttb";
+        db.execSQL(sq);
+    }
 }

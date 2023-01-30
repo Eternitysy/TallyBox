@@ -1,11 +1,15 @@
 package com.hui.tallybox;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hui.tallybox.adapter.AccountAdapter;
 import com.hui.tallybox.db.AccountBean;
@@ -37,6 +41,36 @@ public class HistoryActivity extends AppCompatActivity {
         intiTtime();
         time.setText(year+"/"+month);
         loadData(year,month);
+        setLVLongClickListener();
+    }
+    /*设置ListView的长按事件*/
+    private void setLVLongClickListener() {
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                int pos=position-1;
+                AccountBean clickBean= mData.get(pos); //获取当前被点击的数据
+                //弹出是否删除删除的对话框
+                showDeleteDialog(clickBean);
+                return false;
+            }
+
+
+        });
+    }
+    private void showDeleteDialog(AccountBean clickBean) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage("删除后无法恢复,是否删除?").setNegativeButton("取消",null).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int click_id=clickBean.getId();  //获取id
+                DBManager.deleteFromAccounttbByid(click_id); //从数据库中删除数据
+                mData.remove(clickBean); //从ListView中移除数据
+                Toast.makeText(HistoryActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged(); //提示适配器更新数据
+            }
+        });
+        builder.create().show();
     }
     /*获取指定年月的数据*/
     private void loadData(int year,int month) {
@@ -70,7 +104,6 @@ public class HistoryActivity extends AppCompatActivity {
                         dialogSelMonth = month;
                     }
                 });
-
                 break;
         }
     }
