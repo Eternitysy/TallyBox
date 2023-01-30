@@ -11,10 +11,11 @@
     <color name="blue_1A5599">#1A5599</color>
     <color name="grey_bfbfbf">#bfbfbf</color>
     <color name="grey_8a8a8a">#8a8a8a</color>
-    <color name="geen_01847F">#01847F</color>
+    <color name="green_01847F">#01847F</color>
     <color name="yellow_FBD26A">#FBD26A</color>
     <color name="green_5F9EA0">#5F9EA0</color>
     <color name="beige_FAFAD2">#FAFAD2</color>
     <color name="grey_DCDCDC">#D3D3D3</color>
+    <color name="yellow_F3E03B">#F3E03B</color>
 
 </resources>

@@ -173,6 +173,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //如果被点击的是头布局
         if(view==headView){
+            Intent intent = new Intent();
+            intent.setClass(this, MonthChartActivity.class);
+            startActivity(intent);
 
         }
     }

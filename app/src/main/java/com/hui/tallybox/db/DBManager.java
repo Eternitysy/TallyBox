@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
+import com.hui.tallybox.utils.FloatUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,6 +155,19 @@ public class DBManager {
         return total;
     }
     /*
+     统计某月份支出或者收入情况有多少条  收入-1   支出-0
+     */
+    public static int getCountItemOneMonth(int year,int month,int kind){
+        int total = 0;
+        String sql = "select count(money) from accounttb where year=? and month=? and kind=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") int count = cursor.getInt(cursor.getColumnIndex("count(money)"));
+            total = count;
+        }
+        return total;
+    }
+    /*
      查询记账表中记录了的年份
      */
     public static List<Integer> getYearFromAccounttb() {
@@ -179,4 +194,39 @@ public class DBManager {
         String sq="delete from accounttb";
         db.execSQL(sq);
     }
+    /*
+      查询指定年份和月份的收入或者支出每一种类型的总钱数
+     */
+    public static List<ChartItemBean>getChartListFromAccounttb(int year,int month,int kind){
+        List<ChartItemBean>list = new ArrayList<>();
+        float sumMoneyOneMonth = getSumMonthAccount(year, month, kind);  //求出支出或者收入总钱数
+        String sql = "select typename,sImageid,sum(money)as total from accounttb where year=? and month=? and kind=? group by typename " +
+                "order by total desc";
+        Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
+        while (cursor.moveToNext()) {
+            @SuppressLint("Range") int sImageId = cursor.getInt(cursor.getColumnIndex("sImageid"));
+            @SuppressLint("Range") String typename = cursor.getString(cursor.getColumnIndex("typename"));
+            @SuppressLint("Range") float total = cursor.getFloat(cursor.getColumnIndex("total"));
+            //计算所占百分比  total /sumMonth
+            float ratio = FloatUtils.div(total,sumMoneyOneMonth);
+            ChartItemBean bean = new ChartItemBean(sImageId, typename, ratio, total);
+            list.add(bean);
+        }
+        return list;
+    }
+
+    /*
+      获取这个月当中某一天收入支出最大的金额，金额是多少
+     */
+    public static float getMaxMoneyOneDayInMonth(int year,int month,int kind){
+        String sql = "select sum(money) from accounttb where year=? and month=? and kind=? group by day order by sum(money) desc";
+        Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
+            return money;
+        }
+        return 0;
+    }
+
+
 }
