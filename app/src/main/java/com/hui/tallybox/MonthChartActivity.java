@@ -32,8 +32,6 @@ public class MonthChartActivity extends AppCompatActivity {
     private OutcomeChartFragment outcomeChartFragment;
     private ChartVPAdapter chartVPAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,24 +54,23 @@ public class MonthChartActivity extends AppCompatActivity {
 
     private void initFrag() {
         chartFragList = new ArrayList<>();
-//        添加Fragment的对象
+        //添加Fragment的对象
         incomeChartFragment = new IncomeChartFragment();
         outcomeChartFragment = new OutcomeChartFragment();
-//        添加数据到Fragment当中
+        //添加数据到Fragment当中
         Bundle bundle = new Bundle();
         bundle.putInt("year",year);
         bundle.putInt("month",month);
         incomeChartFragment.setArguments(bundle);
         outcomeChartFragment.setArguments(bundle);
-//        将Fragment添加到数据源当中
+        //将Fragment添加到数据源当中
         chartFragList.add(outcomeChartFragment);
         chartFragList.add(incomeChartFragment);
-//        使用适配器
+        //设置适配器
         chartVPAdapter = new ChartVPAdapter(getSupportFragmentManager(), chartFragList);
         chartVp.setAdapter(chartVPAdapter);
-//        将Fragment加载到Acitivy当中
+        //将Fragment加载到Acitivy中
     }
-
 
     /* 统计某年某月的收支情况数据*/
     private void initStatistics(int year, int month) {
@@ -94,7 +91,7 @@ public class MonthChartActivity extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH)+1;
     }
 
-    /** 初始化控件*/
+    /*初始化控件*/
     private void initView() {
         inBtn = findViewById(R.id.chart_btn_in);
         outBtn = findViewById(R.id.chart_btn_out);
@@ -107,18 +104,18 @@ public class MonthChartActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.chart_iv_back:
-                finish();
+                finish(); //点击返回，跳转到上一界面
                 break;
             case R.id.chart_iv_rili:
-                showCalendarDialog();
+                showCalendarDialog(); //点击日历，弹出选择对话框
                 break;
             case R.id.chart_btn_in:
                 setButtonStyle(1);
-                chartVp.setCurrentItem(1);
+                chartVp.setCurrentItem(1); //收入界面
                 break;
             case R.id.chart_btn_out:
                 setButtonStyle(0);
-                chartVp.setCurrentItem(0);
+                chartVp.setCurrentItem(0); //支出界面
                 break;
         }
     }
@@ -136,12 +133,11 @@ public class MonthChartActivity extends AppCompatActivity {
                 initStatistics(year,month);
                 incomeChartFragment.setData(year,month);
                 outcomeChartFragment.setData(year,month);
-
             }
         });
     }
 
-    /* 设置按钮样式的改变  支出-0  收入-1*/
+    /* 设置按钮样式的改变  支出为0  收入为1*/
     private void setButtonStyle(int kind){
         if (kind == 0) {
             outBtn.setBackgroundResource(R.drawable.main_recordbtn_bt);

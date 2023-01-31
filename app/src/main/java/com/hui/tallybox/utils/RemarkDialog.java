@@ -1,6 +1,5 @@
 package com.hui.tallybox.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
@@ -16,7 +15,6 @@ import android.widget.EditText;
 
 import com.hui.tallybox.R;
 
-import java.util.logging.LogRecord;
 
 import androidx.annotation.NonNull;
 
@@ -37,7 +35,6 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         ensureBtn=findViewById(R.id.dialog_remark_btn_ensure);
         cancelBtn.setOnClickListener(this);
         ensureBtn.setOnClickListener(this);
-
     }
     public interface OnEnsureListener{
         public void onEnsure();
@@ -78,7 +75,7 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            //自动弹出软键盘的方法
+            /*自动弹出软键盘的方法*/
             InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
         }

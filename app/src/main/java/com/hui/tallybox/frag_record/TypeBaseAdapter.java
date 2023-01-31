@@ -33,7 +33,6 @@ public class TypeBaseAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
-    // 此适配器不考虑复用问题，因为所有的item都显示在界面上，不会因为滑动就消失，所有没有剩余的convertView，所以不用复写
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.item_recordfrag_gv,parent,false);
@@ -43,7 +42,7 @@ public class TypeBaseAdapter extends BaseAdapter {
         //获取指定位置的数据源
         TypeBean typeBean = mDatas.get(position);
         tv.setText(typeBean.getTypename());
-//        判断当前位置是否为选中位置，如果是选中位置，就设置为带颜色的图片，否则为灰色图片
+        //判断当前位置是否为选中位置，如果是选中位置，就设置为带颜色的图片，否则为灰色图片
         if (selectPos == position) {
             iv.setImageResource(typeBean.getSimageId());
         }else{

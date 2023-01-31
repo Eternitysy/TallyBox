@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 import com.hui.tallybox.R;
 
 import java.util.ArrayList;
@@ -23,7 +21,6 @@ public class CalendarAdapter extends BaseAdapter {
     List<String>mDatas;
     public int year;
     public int selPos = -1;
-
     public void setYear(int year) {
         this.year = year;
         mDatas.clear();

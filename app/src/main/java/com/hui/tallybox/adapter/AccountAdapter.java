@@ -1,15 +1,16 @@
 package com.hui.tallybox.adapter;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.hui.tallybox.R;
 import com.hui.tallybox.db.AccountBean;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -67,10 +68,7 @@ public class AccountAdapter extends BaseAdapter {
                 holder.timeTv.setText(bean.getTime());
             }
             return convertView;
-
-
     }
-
 
     class ViewHolder{
         ImageView typeIv;

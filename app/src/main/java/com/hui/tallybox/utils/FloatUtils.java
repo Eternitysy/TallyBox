@@ -12,7 +12,7 @@ public class FloatUtils {
         return val;
     }
 
-//    将浮点数类型，转换成百分比显示形式
+    //将浮点数类型，转换成百分比显示形式
     public static String ratioToPercent(float val){
         float v = val*100;
         BigDecimal b1 = new BigDecimal(v);

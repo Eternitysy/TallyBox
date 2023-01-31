@@ -52,14 +52,13 @@ public class ChartItemAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
-    //获取显示内容
-        ChartItemBean bean = mDatas.get(position);
+
+        ChartItemBean bean = mDatas.get(position);  //获取显示内容
         holder.iv.setImageResource(bean.getsImageId());
         holder.typeTv.setText(bean.getType());
         float ratio = bean.getRatio();
         String pert = FloatUtils.ratioToPercent(ratio);
         holder.ratioTv.setText(pert);
-
         holder.totalTv.setText("￥ "+bean.getTotalMoney());
         return convertView;
     }

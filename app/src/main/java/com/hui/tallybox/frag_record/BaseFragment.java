@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.hui.tallybox.R;
 import com.hui.tallybox.db.AccountBean;
-import com.hui.tallybox.db.DBManager;
 import com.hui.tallybox.db.TypeBean;
 import com.hui.tallybox.utils.KeyBoardUtils;
 import com.hui.tallybox.utils.RemarkDialog;
@@ -45,8 +44,6 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         accountBean = new AccountBean();
         accountBean.setTypename("其他");
         accountBean.setsImageid(R.mipmap.more);
-
-
     }
 
     @Override
@@ -67,7 +64,6 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         String time=sdf.format(date);
         timeTv.setText(time);
         accountBean.setTime(time);
-
         Calendar calendar= Calendar.getInstance();
         int year=calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
@@ -75,8 +71,6 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         accountBean.setYear(year);
         accountBean.setMonth(month);
         accountBean.setDay(day);
-
-
     }
 
     /* 设置GridView每一项的点击事件*/
@@ -102,7 +96,6 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         typeList = new ArrayList<>();
         adapter = new TypeBaseAdapter(getContext(), typeList);
         typeGv.setAdapter(adapter);
-
     }
 
     public void initView(View view){
@@ -115,10 +108,10 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         typeGv=view.findViewById(R.id.frag_record_gv);
         remarkTv.setOnClickListener(this);
         timeTv.setOnClickListener(this);
-        //显示键盘
+        /*显示键盘*/
         KeyBoardUtils boardUtils=new KeyBoardUtils(keyboardView,moneyEt);
         boardUtils.showKeyboard();
-        //设置接口，监听确定按钮被点击了
+        /*设置接口，监听确定按钮被点击了*/
         boardUtils.setOnEnsureListener(new KeyBoardUtils.OnEnsureListener() {
             @Override
             public void onEnsure() {
@@ -138,7 +131,7 @@ public class BaseFragment extends Fragment implements View.OnClickListener{
         });
 
     }
-
+    /*在子类中重写此方法*/
     public void saveAccountToDB() {
     }
 

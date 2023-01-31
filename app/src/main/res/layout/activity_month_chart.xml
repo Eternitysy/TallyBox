@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="共1笔支出  ￥23.0"
-            android:textColor="@color/blue_1A5599"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginTop="10dp"/>
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="共2笔收入  ￥113.0"
-            android:textColor="@color/yellow_FBD26A"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginTop="10dp"/>
     </LinearLayout>

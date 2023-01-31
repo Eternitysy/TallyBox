@@ -10,13 +10,11 @@ import android.widget.EditText;
 
 import com.hui.tallybox.R;
 
-import org.w3c.dom.CDATASection;
-
 import androidx.annotation.NonNull;
 
 /*
-  在记录页面弹出对话框
- */
+* 在记录页面弹出对话框
+**/
 public class SelectTimeDialog extends Dialog implements View.OnClickListener {
     DatePicker datePicker;
     EditText hours,minutes;

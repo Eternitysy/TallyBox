@@ -13,21 +13,20 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         super(context,"tally.db" , null, 1);
     }
 
-    //    创建数据库的方法，只有项目第一次运行时，会被调用
+    //创建数据库的方法，只有项目第一次运行时，会被调用
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        创建表示类型的表
+        //创建表示类型的表
         String sql = "create table typetb(id integer primary key autoincrement,typename varchar(10),imageId integer,sImageId integer,kind integer)";
         db.execSQL(sql);
         insertType(db);
-
         //创建记账表
         sql="create table accounttb(id integer primary key autoincrement,typename vachar(10),sImageid integer,remark vachar(90),time vachar(60),money integer,year integer,month integer,day integer,kind integer)";
         db.execSQL(sql);
     }
 
     private void insertType(SQLiteDatabase db) {
-//      向typetb表当中插入元素
+        // 向typetb表当中插入元素
         String sq = "insert into typetb (typename,imageId,sImageId,kind) values (?,?,?,?)";
         db.execSQL(sq,new Object[]{"其他", R.mipmap.other1,R.mipmap.more,0});
         db.execSQL(sq,new Object[]{"餐饮", R.mipmap.catering1,R.mipmap.catering,0});

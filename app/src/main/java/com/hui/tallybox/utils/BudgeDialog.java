@@ -1,6 +1,5 @@
 package com.hui.tallybox.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
@@ -15,10 +14,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.hui.tallybox.R;
 
-import java.util.logging.LogRecord;
 
 import androidx.annotation.NonNull;
 
@@ -66,7 +63,7 @@ public class BudgeDialog extends Dialog implements View.OnClickListener {
         }
 
     }
-    //获取输入数据的方法
+    /*获取输入数据的方法*/
     public String getEditText(){
         return et.getText().toString().trim();
     }
@@ -82,12 +79,12 @@ public class BudgeDialog extends Dialog implements View.OnClickListener {
         w.gravity= Gravity.BOTTOM;
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setAttributes(w);
-        handler.sendEmptyMessageDelayed(2,100);
+        handler.sendEmptyMessageDelayed(2,100); //延迟弹出，否则会产生冲突
     }
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
-            //自动弹出软键盘的方法
+            /*自动弹出软键盘的方法*/
             InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
         }

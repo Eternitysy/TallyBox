@@ -33,9 +33,9 @@ public class CalendarDialog extends Dialog implements View.OnClickListener {
     List<TextView>hsvViewList;
     List<Integer>yearList;
 
-    int selectPos = -1;   //表示正在被点击的年份的位置
     private CalendarAdapter adapter;
-    int selectMonth = -1;
+    int selectPos = -1;   //表示正在被点击的年份的位置
+    int selectMonth = -1; //表示正在被点击的月份的位置
 
     public interface OnRefreshListener{
         public void onRefresh(int selPos,int year,int month);
@@ -60,13 +60,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener {
         errorIv = findViewById(R.id.dialog_calendar_iv);
         hsvLayout = findViewById(R.id.dialog_calendar_layout);
         errorIv.setOnClickListener(this);
-        // 向横向的ScrollView当中添加View的方法
         addViewToLayout();
         initGridView();
-        //设置GridView当中每一个item的点击事件
         setGVListener();
     }
-
+    /*设置GridView当中每一个item的点击事件*/
     private void setGVListener() {
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,7 +91,7 @@ public class CalendarDialog extends Dialog implements View.OnClickListener {
         }
         gv.setAdapter(adapter);
     }
-
+    /* 向横向的ScrollView当中添加View的方法*/
     private void addViewToLayout() {
         hsvViewList = new ArrayList<>();   //将添加进入线性布局当中的TextView进行统一管理
         yearList = DBManager.getYearFromAccounttb(); //获取数据库当中存储了多少个年份(除当年，只有有记录的年份才会被显示)
@@ -118,7 +116,7 @@ public class CalendarDialog extends Dialog implements View.OnClickListener {
         changeTvbg(selectPos);    //将最后一个设置为选中状态
         setHSVClickListener();    //设置每一个View的监听事件
     }
-    /** 给横向的ScrollView当中每一个TextView设置点击事件*/
+    /* 给横向的ScrollView当中每一个TextView设置点击事件*/
     private void setHSVClickListener() {
         for (int i = 0; i < hsvViewList.size(); i++) {
             TextView view = hsvViewList.get(i);
@@ -136,7 +134,7 @@ public class CalendarDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    /** 传入被选中的位置，改变此位置上的背景和文字颜色*/
+    /*传入被选中的位置，改变此位置上的背景和文字颜色*/
     private void changeTvbg(int selectPos) {
         for (int i = 0; i < hsvViewList.size(); i++) {
             TextView tv = hsvViewList.get(i);
@@ -160,11 +158,11 @@ public class CalendarDialog extends Dialog implements View.OnClickListener {
 
     /* 设置Dialog的尺寸和屏幕尺寸一致*/
     public void setDialogSize(){
-//        获取当前窗口对象
+        //获取当前窗口对象
         Window window = getWindow();
-//        获取窗口对象的参数
+        //获取窗口对象的参数
         WindowManager.LayoutParams wlp = window.getAttributes();
-//        获取屏幕宽度
+        //获取屏幕宽度
         Display d = window.getWindowManager().getDefaultDisplay();
         wlp.width = (int)(d.getWidth());  //对话框窗口为屏幕窗口
         wlp.gravity = Gravity.TOP;

@@ -77,14 +77,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:padding="10dp"
-            android:text="2023年1月5日"/>
+            android:text="2023/1/5" />
         <TextView
             android:id="@+id/frag_record_tv_remark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="  添加备注"
             android:drawableLeft="@mipmap/remark0"
-            android:textColor="@color/geen_01847F"
+            android:textColor="@color/green_01847F"
             android:layout_toLeftOf="@+id/frag_record_tv_time"
             android:padding="10dp"/>
 

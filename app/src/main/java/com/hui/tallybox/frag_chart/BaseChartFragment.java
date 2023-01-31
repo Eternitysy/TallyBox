@@ -14,16 +14,12 @@ import com.hui.tallybox.R;
 import com.hui.tallybox.adapter.ChartItemAdapter;
 import com.hui.tallybox.db.ChartItemBean;
 import com.hui.tallybox.db.DBManager;
-import com.hui.tallybox.db.ChartItemBean;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 abstract public class BaseChartFragment extends Fragment {
     ListView chartLv;
     int year;
@@ -34,16 +30,15 @@ abstract public class BaseChartFragment extends Fragment {
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view =  inflater.inflate(R.layout.fragment_income_chart, container, false);
         chartLv = view.findViewById(R.id.frag_chart_lv);
-        //获取Activity传递的数据
+        /*获取Activity传递的数据*/
         Bundle bundle = getArguments();
         year = bundle.getInt("year");
         month = bundle.getInt("month");
         //设置数据源
         mDatas = new ArrayList<>();
-//        设置适配器
+        //设置适配器
         itemAdapter = new ChartItemAdapter(getContext(), mDatas);
         chartLv.setAdapter(itemAdapter);
         return view;
@@ -51,7 +46,6 @@ abstract public class BaseChartFragment extends Fragment {
     public void setData(int year,int month){
         this.year=year;
         this.month=month;
-
     }
     public void loadData(int year,int month,int kind) {
         List<ChartItemBean> list = DBManager.getChartListFromAccounttb(year, month, kind);

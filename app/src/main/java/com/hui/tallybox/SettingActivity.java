@@ -44,6 +44,4 @@ public class SettingActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
-
-
 }

@@ -7,7 +7,7 @@ public class TypeBean {
     String typename;   //类型名称
     int imageId;    //未被选中图片id
     int simageId;    //被选中图片id
-    int kind;     //收入-1  支出-0
+    int kind;     //收入为1  支出为0
 
     public int getId() {
         return id;

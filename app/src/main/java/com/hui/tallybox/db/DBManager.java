@@ -14,7 +14,7 @@ import java.util.List;
 
 /*
  * 负责管理数据库的类
- *   主要对于表当中的内容进行操作，增删改查
+ * 主要对于表当中的内容进行操作，增删改查
  * */
 public class DBManager {
 
@@ -26,16 +26,16 @@ public class DBManager {
         db = helper.getWritableDatabase();      //得到数据库对象
     }
 
-    /**
+    /*
      * 读取数据库当中的数据，写入内存集合里
-     * kind :表示收入或者支出
+     * kind :表示收入或者支出(收入为1，支出为0)
      */
     public static List<TypeBean> getTypeList(int kind) {
         List<TypeBean> list = new ArrayList<>();
         //读取typetb表当中的数据
         String sql = "select * from typetb where kind = " + kind;
         Cursor cursor = db.rawQuery(sql, null);
-//        循环读取图标内容，存储到对象当中
+        //循环读取游标内容，存储到对象当中
         while (cursor.moveToNext()) {
             @SuppressLint("Range") String typename = cursor.getString(cursor.getColumnIndex("typename"));
             @SuppressLint("Range") int imageId = cursor.getInt(cursor.getColumnIndex("imageId"));
@@ -48,8 +48,8 @@ public class DBManager {
         return list;
     }
     /*
-      向记账表中插入一条数据
-     */
+    * 向记账表中插入一条数据
+    **/
     public static void insertItemToAccounttb(AccountBean bean){
         ContentValues values = new ContentValues();
         values.put("typename",bean.getTypename());
@@ -64,8 +64,8 @@ public class DBManager {
         db.insert("accounttb",null,values);
     }
     /*
-    获取某一天的支出或收入情况
-     */
+    * 获取某一天的支出或收入情况
+    **/
     @SuppressLint("Range")
     public static List<AccountBean>getDayAccountFromAccounttb(int year, int month, int day){
         List<AccountBean>list=new ArrayList<>();
@@ -82,14 +82,12 @@ public class DBManager {
             float money = cursor.getFloat(cursor.getColumnIndex("money"));
             AccountBean accountBean=new AccountBean(id,sImageid,typename,remark,time,money,year,month,day,kind);
             list.add(accountBean);
-
         }
         return list;
-
     }
     /*
-    获取某月的支出或收入情况
-     */
+    * 获取某月的支出或收入情况
+    * */
     @SuppressLint("Range")
     public static List<AccountBean>getMonthAccountFromAccounttb(int year, int month){
         List<AccountBean>list=new ArrayList<>();
@@ -107,14 +105,12 @@ public class DBManager {
             int day=cursor.getInt(cursor.getColumnIndex("day"));
             AccountBean accountBean=new AccountBean(id,sImageid,typename,remark,time,money,year,month,day,kind);
             list.add(accountBean);
-
         }
         return list;
-
     }
     /*
-     获取每天的收入支出总金额
-     */
+    * 获取每天的收入支出总金额
+    **/
     public static float getSumDayAccount(int year,int month,int day,int kind){
         float total=0.0f;
         String sql="select sum(money) from accounttb where year=? and month=? and day=? and kind=?";
@@ -141,8 +137,8 @@ public class DBManager {
         return total;
     }
     /*
-     获取每年的收入支出总金额
-     */
+     * 获取每年的收入支出总金额
+     **/
     public static float getSumYearAccount(int year,int kind){
         float total=0.0f;
         String sql="select sum(money) from accounttb where year=? and kind=?";
@@ -155,8 +151,8 @@ public class DBManager {
         return total;
     }
     /*
-     统计某月份支出或者收入情况有多少条  收入-1   支出-0
-     */
+     * 统计某月份支出或者收入情况有多少条
+     **/
     public static int getCountItemOneMonth(int year,int month,int kind){
         int total = 0;
         String sql = "select count(money) from accounttb where year=? and month=? and kind=?";
@@ -168,8 +164,8 @@ public class DBManager {
         return total;
     }
     /*
-     查询记账表中记录了的年份
-     */
+     * 查询记账表中记录了的年份
+     **/
     public static List<Integer> getYearFromAccounttb() {
         List<Integer>list=new ArrayList<>();
         String sql="select distinct(year) from accounttb order by year asc";
@@ -181,25 +177,25 @@ public class DBManager {
         return list;
     }
     /*
-      通过id从accounttb中删除数据
-     */
+     * 通过id从accounttb中删除数据
+     **/
     public static int deleteFromAccounttbByid(int id) {
         int i=db.delete("accounttb","id=?",new String[]{id+""});
         return i;
     }
     /*
-     删除accounttb中所有数据
-     */
+     * 删除accounttb中所有数据
+     **/
     public static void clearAllAccounttb(){
         String sq="delete from accounttb";
         db.execSQL(sq);
     }
     /*
-      查询指定年份和月份的收入或者支出每一种类型的总钱数
-     */
+     * 查询指定年份和月份的收入或支出每一种类型的总金额
+     **/
     public static List<ChartItemBean>getChartListFromAccounttb(int year,int month,int kind){
         List<ChartItemBean>list = new ArrayList<>();
-        float sumMoneyOneMonth = getSumMonthAccount(year, month, kind);  //求出支出或者收入总钱数
+        float sumMoneyOneMonth = getSumMonthAccount(year, month, kind);  //求出支出或者收入总金额
         String sql = "select typename,sImageid,sum(money)as total from accounttb where year=? and month=? and kind=? group by typename " +
                 "order by total desc";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
@@ -216,8 +212,8 @@ public class DBManager {
     }
 
     /*
-      获取这个月当中某一天收入支出最大的金额，金额是多少
-     */
+     * 获取这个月当中某一天收入支出最大的金额，金额是多少
+     **/
     public static float getMaxMoneyOneDayInMonth(int year,int month,int kind){
         String sql = "select sum(money) from accounttb where year=? and month=? and kind=? group by day order by sum(money) desc";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
@@ -227,6 +223,4 @@ public class DBManager {
         }
         return 0;
     }
-
-
 }

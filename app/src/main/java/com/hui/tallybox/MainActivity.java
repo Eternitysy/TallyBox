@@ -29,21 +29,20 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    //展示今日收支情况的LV相关控件
+    /*展示今日收支情况的LV相关控件*/
     ListView todayLV;
     ImageView searchIv;
     Button editBtn;
     ImageButton moreBtn;
-    //声明数据源
+    /*声明数据源*/
     List<AccountBean>mData;
     AccountAdapter adapter;
     int year,month,day;
-    //头布局相关控件
+    /*头布局相关控件*/
     View headView;
     TextView topOutTv,topInTv,topemoneyTv,topAllTv;
     ImageView budgetIv;
     SharedPreferences sharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter= new AccountAdapter(this,mData);
         todayLV.setAdapter(adapter);
     }
-    //添加头布局的方法
+    /*添加头布局的方法*/
     private void addLVHead() {
         headView= getLayoutInflater().inflate(R.layout.item_mainlv_top,null);
         todayLV.addHeaderView(headView);
@@ -70,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         topAllTv= headView.findViewById(R.id.item_mainlv_iv_top_all);
         budgetIv.setOnClickListener(this);
         headView.setOnClickListener(this);
-
-
     }
 
     private void initView() {
@@ -95,8 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showDeleteDialog(clickBean);
                 return false;
             }
-
-
         });
     }
     private void showDeleteDialog(AccountBean clickBean) {
@@ -122,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    //当activity获取焦点时会调用的方法
+    /*当activity获取焦点时会调用的方法*/
     @Override
     protected void onResume() {
         super.onResume();
@@ -141,8 +136,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         float outcomeMonth = DBManager.getSumMonthAccount(year, month,0);
         topInTv.setText("￥"+incomeMonth);
         topOutTv.setText("￥"+outcomeMonth);
-
-
     }
 
     private void loadDBData() {
@@ -156,30 +149,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.mian_iv_box:
                 Intent it1=new Intent(this,HistoryActivity.class);
-                startActivity(it1);
+                startActivity(it1); //点击账本，跳转到历史账单
                 break;
             case R.id.main_btn_edit:
                 Intent it2=new Intent(this,RecordActivity.class);
-                startActivity(it2);
+                startActivity(it2); //点击记一笔，跳转到记录界面
                 break;
             case R.id.main_bt_more:
                 Intent it3=new Intent(this,SettingActivity.class);
-                startActivity(it3);
+                startActivity(it3); //点击设置，跳转到设置界面
                 break;
             case R.id.item_mainlv_iv_top_budget:
-                showBudgeDialog();
+                showBudgeDialog(); //点击eye,弹出设置预算的对话框
                 break;
-
         }
-        //如果被点击的是头布局
+        /*如果被点击的是头布局*/
         if(view==headView){
             Intent intent = new Intent();
             intent.setClass(this, MonthChartActivity.class);
-            startActivity(intent);
-
+            startActivity(intent); //跳转到数据分析界面
         }
     }
-
 
     /*显示预算设置对话框*/
     private void showBudgeDialog() {
@@ -195,12 +185,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 editor.commit();
                 //计算剩余金额
                 float outcomeMonth=DBManager.getSumMonthAccount(year,month,0);
-                float emoney=money-outcomeMonth;//不计入收入金额
+                float emoney=money-outcomeMonth;//剩余预算不计入收入金额
                 topemoneyTv.setText("￥"+emoney);
             }
         });
-
-
-
     }
 }

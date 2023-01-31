@@ -36,6 +36,17 @@
         android:textColor="@color/grey_8a8a8a"
         android:padding="15dp"
         android:background="@color/white"/>
+    <TextView
+        android:id="@+id/setting_tv_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关于该应用"
+        android:onClick="onClick"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/grey_8a8a8a"
+        android:padding="15dp"
+        android:background="@color/white"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -1,6 +1,5 @@
 package com.hui.tallybox.adapter;
 
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
