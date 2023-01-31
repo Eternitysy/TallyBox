@@ -136,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         float outcomeMonth = DBManager.getSumMonthAccount(year, month,0);
         topInTv.setText("￥"+incomeMonth);
         topOutTv.setText("￥"+outcomeMonth);
+        /*设置显示预算剩余*/
+        float bmoney=sharedPreferences.getFloat("bmoney",0);
+        float emoney=bmoney-outcomeMonth;
+        topemoneyTv.setText("￥"+emoney);
     }
 
     private void loadDBData() {
