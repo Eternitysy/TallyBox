@@ -38,22 +38,24 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(sq,new Object[]{"零食", R.mipmap.snack1,R.mipmap.snack,0});
         db.execSQL(sq,new Object[]{"教育", R.mipmap.study1,R.mipmap.study,0});
         db.execSQL(sq,new Object[]{"娱乐", R.mipmap.amusement1,R.mipmap.amusement,0});
-        db.execSQL(sq,new Object[]{"生活缴费", R.mipmap.life1,R.mipmap.life,0});
+        db.execSQL(sq,new Object[]{"日用品", R.mipmap.daily1,R.mipmap.daily,0});
         db.execSQL(sq,new Object[]{"旅行", R.mipmap.travel1,R.mipmap.travel,0});
         db.execSQL(sq,new Object[]{"车票", R.mipmap.ticket1,R.mipmap.ticket,0});
         db.execSQL(sq,new Object[]{"医疗", R.mipmap.medica1,R.mipmap.medica,0});
         db.execSQL(sq,new Object[]{"保险", R.mipmap.insurance1,R.mipmap.insurance,0});
-        db.execSQL(sq,new Object[]{"日常用品", R.mipmap.daily1,R.mipmap.daily,0});
         db.execSQL(sq,new Object[]{"话费", R.mipmap.phone1,R.mipmap.phone,0});
+        db.execSQL(sq,new Object[]{"生活缴费", R.mipmap.life1,R.mipmap.life,0});
+
 
 
         db.execSQL(sq,new Object[]{"其他", R.mipmap.others1,R.mipmap.others,1});
         db.execSQL(sq,new Object[]{"工资", R.mipmap.wages1,R.mipmap.wages,1});
         db.execSQL(sq,new Object[]{"奖金", R.mipmap.bonus1,R.mipmap.bonus,1});
         db.execSQL(sq,new Object[]{"红包", R.mipmap.redenvelops1,R.mipmap.redenvelops,1});
+        db.execSQL(sq,new Object[]{"理财", R.mipmap.financial1,R.mipmap.financial,1});
         db.execSQL(sq,new Object[]{"收转账", R.mipmap.in1,R.mipmap.in,1});
         db.execSQL(sq,new Object[]{"退款", R.mipmap.refund1,R.mipmap.refund,1});
-        db.execSQL(sq,new Object[]{"理财", R.mipmap.financial1,R.mipmap.financial,1});
+
 
     }
 

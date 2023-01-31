@@ -14,16 +14,18 @@
         <Key android:codes="52" android:keyLabel="4"/>
         <Key android:codes="53" android:keyLabel="5"/>
         <Key android:codes="54" android:keyLabel="6"/>
-        <Key android:codes="-4" android:keyHeight="150dp" android:shadowColor="@color/blue_1A5599"  android:keyLabel="确定"/>
+        <Key android:codes="-4" android:keyLabel="@null"/>
     </Row>
     <Row>
         <Key android:codes="55" android:keyLabel="7"/>
         <Key android:codes="56" android:keyLabel="8"/>
         <Key android:codes="57" android:keyLabel="9"/>
+        <Key android:codes="-4" android:keyLabel="确定"/>
     </Row>
     <Row>
         <Key android:codes="48" android:keyWidth="50%p" android:keyLabel="0"/>
         <Key android:codes="46" android:keyLabel="."/>
+        <Key android:codes="-4" android:keyLabel="@null"/>
     </Row>
 
 

@@ -15,7 +15,8 @@
         android:id="@+id/frag_record_iv"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@mipmap/more" />
+        android:src="@mipmap/more"
+        android:layout_centerVertical="true"/>
 
     <TextView
         android:id="@+id/frag_record_tv_type"
@@ -97,6 +98,7 @@
         android:layout_height="wrap_content"
         android:keyBackground="@color/white"
         android:keyTextColor="@color/black"
+        android:verticalCorrection="1.1dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:paddingTop="1dp"
