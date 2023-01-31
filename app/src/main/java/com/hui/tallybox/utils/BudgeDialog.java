@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.hui.tallybox.R;
 
@@ -51,6 +53,10 @@ public class BudgeDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.dialog_budget_btn_ensure:
                 String data=et.getText().toString();
+                if(TextUtils.isEmpty(data)){
+                    Toast.makeText(getContext(), "输入数据不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 float money=Float.parseFloat(data);
                 if(onEnsureListener!=null){
                     onEnsureListener.onEnsure(money);
