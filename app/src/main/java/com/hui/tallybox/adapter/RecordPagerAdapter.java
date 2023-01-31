@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
-
+/*
+ * 记录界面Fragment对应的适配器
+ * */
 public class RecordPagerAdapter extends FragmentPagerAdapter {
     List<Fragment>fragmentList;
     String[]titles = {"支出","收入"};

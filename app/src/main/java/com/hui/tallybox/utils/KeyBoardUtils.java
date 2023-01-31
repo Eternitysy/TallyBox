@@ -7,7 +7,9 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import com.hui.tallybox.R;
-
+/*
+ * 自定义软键盘
+ * */
 public class KeyBoardUtils {
     private final Keyboard k1;    //自定义键盘
     private KeyboardView keyboardView;

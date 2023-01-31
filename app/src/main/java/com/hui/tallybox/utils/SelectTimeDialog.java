@@ -13,8 +13,8 @@ import com.hui.tallybox.R;
 import androidx.annotation.NonNull;
 
 /*
-* 在记录页面弹出对话框
-**/
+ * 设置时间选择对话框
+ * */
 public class SelectTimeDialog extends Dialog implements View.OnClickListener {
     DatePicker datePicker;
     EditText hours,minutes;

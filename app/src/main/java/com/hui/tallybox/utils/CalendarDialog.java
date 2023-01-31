@@ -24,7 +24,9 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
+/*
+ * 设置日历对话框
+ * */
 public class CalendarDialog extends Dialog implements View.OnClickListener {
     ImageView errorIv;
     GridView gv;

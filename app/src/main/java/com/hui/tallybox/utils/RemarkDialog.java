@@ -15,9 +15,10 @@ import android.widget.EditText;
 
 import com.hui.tallybox.R;
 
-
 import androidx.annotation.NonNull;
-
+/*
+ * 设置备注对话框
+ * */
 public class RemarkDialog extends Dialog implements View.OnClickListener {
     EditText et;
     Button cancelBtn,ensureBtn;

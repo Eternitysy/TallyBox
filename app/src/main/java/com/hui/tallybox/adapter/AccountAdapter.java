@@ -13,7 +13,9 @@ import com.hui.tallybox.db.AccountBean;
 
 import java.util.Calendar;
 import java.util.List;
-
+/*
+ * 账单ListView对应的适配器
+ * */
 public class AccountAdapter extends BaseAdapter {
     Context context;
     List<AccountBean>mData;

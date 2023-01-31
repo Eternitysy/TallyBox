@@ -18,7 +18,9 @@ import com.hui.tallybox.R;
 
 
 import androidx.annotation.NonNull;
-
+/*
+ * 设置预算对话框
+ * */
 public class BudgeDialog extends Dialog implements View.OnClickListener {
     EditText et;
     Button cancelBtn,ensureBtn;

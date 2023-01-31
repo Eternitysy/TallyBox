@@ -1,5 +1,7 @@
 package com.hui.tallybox.db;
-
+/*
+ * 描述记录账单详情中一条数据的相关内容
+ **/
 public class ChartItemBean {
     int sImageId;
     String type;

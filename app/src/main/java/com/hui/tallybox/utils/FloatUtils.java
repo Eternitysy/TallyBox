@@ -1,7 +1,9 @@
 package com.hui.tallybox.utils;
 
 import java.math.BigDecimal;
-
+/*
+ * 处理数据
+ * */
 public class FloatUtils {
 
     /* 进行除法运算，保留4位小数*/

@@ -1,5 +1,7 @@
 package com.hui.tallybox.db;
-/* 描述记录一条数据的相关内容*/
+/*
+* 描述记录今日收支中一条数据的相关内容
+**/
 public class AccountBean {
     int id;
     int sImageid; //被选中的图片

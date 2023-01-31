@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.hui.tallybox.R;
-
+/*
+ * 数据库操作
+ * */
 public class DBOpenHelper extends SQLiteOpenHelper {
     public DBOpenHelper(@Nullable Context context) {
         super(context,"tally.db" , null, 1);
@@ -26,7 +28,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     }
 
     private void insertType(SQLiteDatabase db) {
-        // 向typetb表当中插入元素
+        /*向typetb表当中插入元素*/
         String sq = "insert into typetb (typename,imageId,sImageId,kind) values (?,?,?,?)";
         db.execSQL(sq,new Object[]{"其他", R.mipmap.other1,R.mipmap.more,0});
         db.execSQL(sq,new Object[]{"餐饮", R.mipmap.catering1,R.mipmap.catering,0});
