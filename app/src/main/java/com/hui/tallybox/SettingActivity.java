@@ -26,6 +26,9 @@ public class SettingActivity extends AppCompatActivity {
             case R.id.setting_tv_clear:
                 showClearDialog();
                 break;
+            case R.id.setting_tv_about:
+                Intent it=new Intent(this,AboutActivity.class);
+                startActivity(it);
         }
     }
     /*弹出是否清空的对话框*/
