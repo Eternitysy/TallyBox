@@ -48,8 +48,7 @@ public class HistoryActivity extends AppCompatActivity {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                int pos=position-1;
-                AccountBean clickBean= mData.get(pos); //获取当前被点击的数据
+                AccountBean clickBean= mData.get(position); //获取当前被点击的数据
                 //弹出是否删除删除的对话框
                 showDeleteDialog(clickBean);
                 return false;

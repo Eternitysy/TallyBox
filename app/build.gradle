@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.hui.tallybox'
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.hui.tallybox"
